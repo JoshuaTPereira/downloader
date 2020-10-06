@@ -5,4 +5,4 @@ gem "net-ssh", "~> 6.1"
 
 gem "activesupport", "~> 6.0"
 
-gem "wxruby", "~> 1.9"
+gem "gtk3", "~> 3.4"

@@ -1,5 +1,4 @@
 require 'optparse'
-require 'net/scp'
 require "active_support"
 
 class DownloaderArgumentParser
