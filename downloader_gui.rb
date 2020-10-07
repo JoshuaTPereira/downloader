@@ -63,11 +63,7 @@ class DownloaderGUI
       grid.attach(@password_field, 2, 0, 1, 1)
 
       # Files for Download
-      @files_for_download_dialog = Gtk::FileChooserDialog.new("Select File",
-                                                              window,
-                                                              :open,
-                                                              nil,
-                                                              [Gtk::Stock::OPEN, :accept])
+      @files_for_download_dialog = files_for_download_dialog(window)
 
       button = Gtk::Button.new(:label => "Select Files for Download")
       button.signal_connect("clicked") do   
@@ -78,20 +74,12 @@ class DownloaderGUI
         @files_for_download_dialog.close
 
         # The #close method destroys the dialog object for whatever reason...
-        @files_for_download_dialog = Gtk::FileChooserDialog.new("Select File",
-                                                              window,
-                                                              :open,
-                                                              nil,
-                                                              [Gtk::Stock::OPEN, :accept])
+        @files_for_download_dialog = files_for_download_dialog(window)
       end
       grid.attach(button, 0, 1, 1, 1)
 
       # Output Directory
-      @output_directory_dialog = Gtk::FileChooserDialog.new("Select File",
-                                                              window,
-                                                              :open,
-                                                              nil,
-                                                              [Gtk::Stock::OPEN, :accept])
+      @output_directory_dialog = output_directory_dialog(window)
 
       button = Gtk::Button.new(:label => "Select Output Directory")
       button.signal_connect("clicked") do   
@@ -102,11 +90,7 @@ class DownloaderGUI
         @output_directory_dialog.close
 
         # The #close method destroys the dialog object for whatever reason...
-        @output_directory_dialog = Gtk::FileChooserDialog.new("Select Directory",
-                                                              window,
-                                                              :open,
-                                                              nil,
-                                                              [Gtk::Stock::OPEN, :accept])
+        @output_directory_dialog = output_directory_dialog(window)
       end
       grid.attach(button, 1, 1, 1, 1)
 
@@ -128,6 +112,27 @@ class DownloaderGUI
     end
 
     app.run([$0] + ARGV)
+  end
+
+  def files_for_download_dialog(window)
+    files_for_download_dialog = Gtk::FileChooserDialog.new("Select File",
+                                                          window,
+                                                          :open,
+                                                          nil,
+                                                          ["Select Current File", :accept])
+
+    files_for_download_dialog
+  end
+
+  def output_directory_dialog(window)
+    output_directory_dialog = Gtk::FileChooserDialog.new("Select Directory",
+                                                        window,
+                                                        :open,
+                                                        nil,
+                                                        ["Select Current Directory", :accept])
+    output_directory_dialog.action = Gtk::FileChooser::ACTION_SELECT_FOLDER
+
+    output_directory_dialog
   end
 end
 
