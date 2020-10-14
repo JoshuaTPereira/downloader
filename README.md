@@ -1,3 +1,6 @@
+# Downloader
+A simple tool with both a GUI and CLI that allows you to copy a set of files from a remote host using scp
+
 Two interfaces are provided to scp files from a remote server:
     * A GUI located in downloader_gui.rb
     * A CLI located in downloader_cli.rb
